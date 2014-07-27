@@ -13,7 +13,7 @@ public class DBConnection {
     private static final String DB_URL 
     	= "jdbc:mysql://localhost:3306/db_tranManagement";
     private static final String DB_USER = "root" ;								//数据库用户名
-    private static final String DB_PASSWORD = "admin";	
+    private static final String DB_PASSWORD = "root";	
     
 	/**
 	 * This method connects to DB and return the connection

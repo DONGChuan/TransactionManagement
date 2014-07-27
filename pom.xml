@@ -1,4 +1,7 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+					http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>TransactionManagement</groupId>
   <artifactId>TransactionManagement</artifactId>
@@ -6,16 +9,40 @@
   <packaging>war</packaging>
   
     <dependencies>
-	<dependency>
-		<groupId>javax.servlet</groupId>
-		<artifactId>servlet-api</artifactId>
-		<version>2.5</version>
-	</dependency>
+	    <dependency>
+			<groupId>net.fckeditor</groupId>
+			<artifactId>java-core</artifactId>
+			<version>2.6</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+		
+		<!-- MySql -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.31</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>1.7.7</version>
+		</dependency>
+		
 	</dependencies>
 	
   <build>

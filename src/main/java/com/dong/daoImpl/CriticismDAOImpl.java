@@ -1,4 +1,4 @@
-package com.dong.daolmpl;
+package com.dong.daoImpl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

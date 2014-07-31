@@ -3,11 +3,16 @@ package com.dong.bean;
 import java.util.Date;
 
 public class Criticism {
+	
 	private int criticismID;		
 	private String criticismContent;
 	private int employeeID;		
 	private Date criticismTime;		
 	private int messageID;		
+	
+	/*
+	 * Getters and Setters
+	 */
 	public int getCriticismID() {
 		return criticismID;
 	}

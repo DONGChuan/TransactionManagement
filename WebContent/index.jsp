@@ -27,73 +27,60 @@
 		
 		<div class="row">
 			<div class="col-md-4">
-				<div class="panel panel-primary page-header">
-  					<div class="panel-heading">
-						<h4>Employee Information</h4>
-					</div>
-					<div class="panel-body">
-						<div>
-							<!-- Switch -->
-							<c:choose>
-								<c:when test="${empty sessionScope.employee}">
-									<div class="alert alert-warning" role="alert">
-										No identification, please <a href="jsp/statusRecognise.jsp" class="alert-link">log in</a> firstly!
-									</div>
-								</c:when>
-								<c:otherwise>
-									<ul>
-									  <li>Employee ID    ：${employee.employeeID}</li>
-									  <li>Employee Name  ：${employee.employeeName}</li>
-									  <li>Employee Sex   ：${employee.employeeSex ? "M" : "F"}</li>
-									  <li>Employee Birth ：${employee.employeeBirth }</li>
-									  <li>Employee Phone ：${employee.employeePhone }</li>
-									  <li>Employee Addre ：${employee.employeePlace }</li>
-									  <li>Employee Leader：${employee.lead ? 'YES' : 'NO'}</li>
-									</ul>
-								</c:otherwise>
-							</c:choose>
-						</div>
-					</div>
+				<div><h4>Employee Information</h4></div>
+				<div>
+					<!-- Switch -->
+					<c:choose>
+						<c:when test="${empty sessionScope.employee}">
+							No identification, please log in firstly!
+						</c:when>
+						<c:otherwise>
+							<ul>
+							  <li>Employee ID    ：${employee.employeeID}</li>
+							  <li>Employee Name  ：${employee.employeeName}</li>
+							  <li>Employee Sex   ：${employee.employeeSex ? "M" : "F"}</li>
+							  <li>Employee Birth ：${employee.employeeBirth }</li>
+							  <li>Employee Phone ：${employee.employeePhone }</li>
+							  <li>Employee Addre ：${employee.employeePlace }</li>
+							  <li>Employee Leader：${employee.lead ? 'YES' : 'NO'}</li>
+							</ul>
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
 			<div class="col-md-8">
 				<div>
-					<div class="panel panel-info page-header">
-				  		<div class="panel-heading">
-				  			<h4>Latest Messages</h4>
-				  		</div>
-				  		<div class="panel-body">
-				    		<b>Our task is to make the world better and more stupid</b>
-				  		</div>
-						<table class="table table-striped">
-		      				<thead>
-		        				<tr>
-		          					<th>#</th>
-		          					<th>Title</th>
-		          					<th>Time</th>
-		        				</tr>
-		      				</thead>
-		      				<tbody>
-		      					<%
-		      					    int i = 1;
-						 			MessageDAO messageDAO = MessageDAOFactory.getMessageAOInstance();
-									Page pageX = PageUtil.createPage(6, messageDAO.findAllCount(), 1);
-									List<Message> messages = messageDAO.findAllMessagee(pageX);
-									for(Message message : messages) { 
-								%>
-		        				<tr>
-		          					<td><%=i++%></td>
-		          					<td><a href="GetMessage?messageID=<%=message.getMessageID()%>"><%=message.getMessageTitle()%></a></td>
-		          					<td><%=message.getPublishTime()%></td>
-		        				</tr>
-		        				<%	
-									}
-								%> 
-		      				</tbody>
-    					</table>
-					</div>
+					<h4>Newest Messages</h4>
+				</div>
+				<div>
+					<table class="table table-striped">
+	      				<thead>
+	        				<tr>
+	          					<th>#</th>
+	          					<th>Title</th>
+	          					<th>Time</th>
+	        				</tr>
+	      				</thead>
+	      				<tbody>
+	      					<%
+					 			MessageDAO messageDAO = MessageDAOFactory.getMessageAOInstance();
+								Page pageX = PageUtil.createPage(6, messageDAO.findAllCount(), 1);
+								List<Message> messages = messageDAO.findAllMessagee(pageX);
+								for(Message message : messages) { 
+							%>
+	        				<tr>
+	          					<td>1</td>
+	          					<td><a href="GetMessage?messageID=<%=message.getMessageID()%>"><%=message.getMessageTitle()%></a></td>
+	          					<td><%=message.getPublishTime()%></td>
+	        				</tr>
+	        				<%	
+								}
+							%> 
+	      				</tbody>
+    				</table>
 				</div>
 			</div>
+		</div>
 		
 		<!-- Add footer for all pages -->
 		<%@ include file="jsp/footer.jsp"%>

@@ -24,30 +24,11 @@
 	<body>
 		<!-- Add header for all pages -->
 		<%@ include file="jsp/header.jsp"%>
-		</div>
-		<div id="indexfirst">
-			<div id="thenew">
-				<div class="tit">
-					<h1>Newest Messages</h1>
-				</div>
-				<div class="STYLE1" id="therecom">
-					<%
-				 		MessageDAO messageDAO = MessageDAOFactory.getMessageAOInstance();
-						Page pageX = PageUtil.createPage(6, messageDAO.findAllCount(), 1);
-						List<Message> messages = messageDAO.findAllMessagee(pageX);
-						for(Message message : messages) { 
-					%>
-						<p><a href="GetMessage?messageID=<%=message.getMessageID()%>"><%=message.getMessageTitle()%></a>
-						<span class="STYLE2"><%=message.getPublishTime()%></span></p>
-				 		<p>&nbsp;</p>
-					<%	
-						}
-					%> 
-				</div>
-			</div>
-			<div id="menunav">
-				<div class="tit"><h1>Employee Information</h1></div>
-				<div id="employee">
+		
+		<div class="row">
+			<div class="col-md-4">
+				<div><h4>Employee Information</h4></div>
+				<div>
 					<!-- Switch -->
 					<c:choose>
 						<c:when test="${empty sessionScope.employee}">
@@ -67,27 +48,43 @@
 					</c:choose>
 				</div>
 			</div>
+			<div class="col-md-8">
+				<div>
+					<h4>Newest Messages</h4>
+				</div>
+				<div>
+					<table class="table table-striped">
+	      				<thead>
+	        				<tr>
+	          					<th>#</th>
+	          					<th>Title</th>
+	          					<th>Time</th>
+	        				</tr>
+	      				</thead>
+	      				<tbody>
+	      					<%
+					 			MessageDAO messageDAO = MessageDAOFactory.getMessageAOInstance();
+								Page pageX = PageUtil.createPage(6, messageDAO.findAllCount(), 1);
+								List<Message> messages = messageDAO.findAllMessagee(pageX);
+								for(Message message : messages) { 
+							%>
+	        				<tr>
+	          					<td>1</td>
+	          					<td><a href="GetMessage?messageID=<%=message.getMessageID()%>"><%=message.getMessageTitle()%></a></td>
+	          					<td><%=message.getPublishTime()%></td>
+	        				</tr>
+	        				<%	
+								}
+							%> 
+	      				</tbody>
+    				</table>
+				</div>
+			</div>
 		</div>
-		<div id="indexsec"></div>
 		
 		<!-- Add footer for all pages -->
 		<%@ include file="jsp/footer.jsp"%>
-		
-		<div class="end"></div>
-		<script type="text/javascript">
- 			startajaxtabs("jsmenu");
-			var iTab=GetCookie("nets_jsmenu");
-				iTab = iTab ? parseInt(iTab):parseInt(Math.random()*5);
-				if(iTab!=0) getElement("jsmenu").getElementsByTagName("h1")[iTab].LoadTab();
-				iTab++;
-				if(iTab>4) iTab=0;
-				SetCookie("nets_jsmenu",iTab,365);
-				
-			function getElement(aID){
-				return (document.getElementById) ? document.getElementById(aID)
-			                                   : document.all[aID];
-			}
-		</script>
+
 	</body>
 </html>
 

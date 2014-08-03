@@ -13,26 +13,10 @@
 </div>
 <div>
 	<ul class="nav nav-tabs nav-justified" role="tablist">
-		<li role="presentation" class="active">
-			<a href="index.jsp">
-				<span class="glyphicon glyphicon-home"></span>HOME
-			</a>
-		</li>
-	  	<li role="presentation">
-	  		<a href="jsp/GetMessageList">
-	  			<span class="glyphicon glyphicon-th-list"></span>Message List
-	  		</a>
-	  	</li>
-	  	<li role="presentation">
-	  		<a href="jsp/publishNewMsg.jsp">
-	  			<span class="glyphicon glyphicon-plus"></span>New Message
-	  		</a>
-	  	</li>
-	  	<li role="presentation">
-	  		<a href="jsp/statusRecognise.jsp">
-	  			<span class="glyphicon glyphicon-user"></span>Logging
-	  		</a>
-	  	</li>
+		<li role="presentation" class="active"><a href="index.jsp" urn="#jsmenu1" rel="conmenu">HOME</a></li>
+	  	<li role="presentation"><a urn="#default_Info" rel="conmenu" href="GetMessageList">Message List</a></li>
+	  	<li role="presentation"><a urn="jsmenu2" rel="conmenu" href="publishNewMsg.jsp">New Message</a></li>
+	  	<li role="presentation"><a urn="jsmenu3" rel="conmenu" href="statusRecognise.jsp">Logging</a></li>
 	</ul>
 </div>
 <div id="conmenu"></div>

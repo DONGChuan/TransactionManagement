@@ -29,7 +29,7 @@
 	  		</a>
 	  	</li>
 	  	<li role="presentation">
-	  		<a href="jsp/statusRecognise.jsp">
+	  		<a href="jsp/login.jsp">
 	  			<span class="glyphicon glyphicon-user"></span>Logging
 	  		</a>
 	  	</li>

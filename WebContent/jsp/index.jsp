@@ -21,7 +21,7 @@
 	</head>
 	<body>
 		<!-- Header -->
-		<%@ include file="jsp/header.jsp"%>
+		<%@ include file="header.jsp"%>
 		
 		<div class="row">
 			<div class="col-md-4">
@@ -55,8 +55,8 @@
 				</div>
 			</div>
 			<div class="col-md-8">
-				<div class="panel panel-info page-header">
-					<div>
+				<div>
+					<div class="panel panel-info page-header">
 				  		<div class="panel-heading">
 				  			<h4>Latest Messages</h4>
 				  		</div>
@@ -94,7 +94,7 @@
 			</div>
 		</div>
 		<!-- Footer -->
-		<%@ include file="jsp/footer.jsp"%>
+		<%@ include file="footer.jsp"%>
 
 	</body>
 </html>

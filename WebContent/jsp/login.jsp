@@ -18,24 +18,50 @@
 		<%@ include file="header.jsp"%>
 		
 		<div>
-			<div id="place">当前位置：[<a href="index.jsp">首页</a>] - [员工身份识别]</div>
-		  <div id="menunav2">
-				<div class="tit">
-		 		 <h1>员工身份识别</h1>
+			<ol class="breadcrumb">
+			  	<li><a href="index.jsp">Home</a></li>
+				<li class="active">Login</li>
+			</ol>
+			<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+		  	<div class="panel panel-info">
+				<div class="panel-heading">
+					<h4>Employee identification</h4>
 				</div>
-				<div id="shenfenshibie">
-					<font color="red">${requestScope.error }</font>
-					<form action="StatusRecogniseAction" method="post">
-				  	<p>员工编号：<input type="text" name="employeeID" value="${param.employeeID}"/></p>
-				  	<p>&nbsp;</p>
-				  	<p>系统口令：<input type="password" name="password" /></p>
-				  	<p>&nbsp;</p>
-				  	<p><input type="submit" value="提交" />
-				    <input type="reset" value="重置" /></p>
-				    </form>
+				<div class="panel-body">
+					<p></p>
+					<p></p>
+					<div>
+						<font color="red">${requestScope.error}</font>
+						<form class="form-horizontal" role="form" action="StatusRecogniseAction" method="post">
+							<div class="form-group">
+	    						<label class="col-sm-2 control-label">User ID</label>
+	    						<div class="col-xs-4">
+	      							<input type="text" class="form-control" placeholder="User ID" name="employeeID" value="${param.employeeID}"/>
+	    						</div>
+	  						</div>
+	  						<div class="form-group">
+	    						<label class="col-sm-2 control-label">Password</label>
+	    						<div class="col-xs-4">
+	      							<input type="password" class="form-control" placeholder="Password" name="password"/>
+	    						</div>
+	 						 </div>
+						    <div class="form-group">
+						    	<div class="col-sm-offset-2 col-sm-10">
+						    		<button type="reset" class="btn btn-default">Reset</button>
+						      		<button type="submit" class="btn btn-default">Login</button>
+						    	</div>
+	 						</div>					
+					    </form>
+					</div>
 				</div>
+				</div>
+			</div>
+			</div>
 		</div>
-		</div>
+		<p></p>
+		<p></p>
+		<p></p>
 		<!-- Footer -->
 		<%@ include file="footer.jsp"%>
 	

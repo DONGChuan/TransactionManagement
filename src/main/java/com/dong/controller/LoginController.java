@@ -42,10 +42,9 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ModelAndView doGet(@RequestParam("employeeID") String employeeID,
+	public ModelAndView logginEmployee(@RequestParam("employeeID") String employeeID,
 					          @RequestParam("password") String password) {
 		
-		System.out.println("aa");
 		String error = null;	
 		
 		if(employeeID == null || "".equals(employeeID)) { // If ID is empty		

@@ -34,7 +34,7 @@
 					<p></p>
 					<div>
 						<font color="red">${requestScope.error}</font>
-						<form class="form-horizontal" role="form" action="/controller/login" method="post">
+						<form class="form-horizontal" role="form" action="/CompanyManagement/login" method="post">
 							<div class="form-group">
 	    						<label class="col-sm-2 control-label">User ID</label>
 	    						<div class="col-xs-4">

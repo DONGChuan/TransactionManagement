@@ -1,0 +1,80 @@
+package com.dong.controller;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.dong.bean.Employee;
+import com.dong.dao.EmployeeDAO;
+import com.dong.factory.EmployeeDAOFactory;
+
+/*
+ * Servlet 
+ * It works for the request from statusRecognise.jsp
+ * 
+ * ID empty               --> statusRecognise.jsp
+ * Password empty         --> statusRecognise.jsp
+ * Password error         --> statusRecognise.jsp
+ * Employee doesn't exist --> statusRecognise.jsp
+ * Both is correct        --> index.jsp
+ */
+@Controller
+@SessionAttributes("employee")
+public class LoginController {
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET) 
+	public String showLoginPage(){
+		return "login";
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public ModelAndView doGet(@RequestParam("employeeID") String employeeID,
+					          @RequestParam("password") String password) {
+		
+		System.out.println("aa");
+		String error = null;	
+		
+		if(employeeID == null || "".equals(employeeID)) { // If ID is empty		
+			error = "Employee ID can't be empty!";
+			return new ModelAndView("login","error",error);
+			
+		}else {
+			if(password == null || "".equals(password)) { // If password is empty	
+				error = "Password can't be empty!";
+				return new ModelAndView("login","error",error);
+			}else {
+				
+				// Loading the DB
+				EmployeeDAO employeeDAO = EmployeeDAOFactory.getEmployeeDAOInstance();
+				Employee employee = employeeDAO.findEmployeeById(Integer.parseInt(employeeID));
+				
+				if(employee == null) { // If this employee doesn't exist
+					error = "This employee ID doesn't exist!";
+					return new ModelAndView("login","error",error);
+				} else {
+					if(password.equals(employee.getPassword())) { // If both are correct
+						return new ModelAndView("index","employee", employee);
+					} else { // If password is error
+						error = "Password is error!";
+						return new ModelAndView("login","error",error);
+					}
+				}
+			}
+		}
+	}
+
+}

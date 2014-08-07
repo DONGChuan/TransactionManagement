@@ -19,11 +19,6 @@ import com.dong.util.PageUtil;
 @Controller
 public class MessageListController {
 	
-	@RequestMapping(value = "/MessageList", method = RequestMethod.GET) 
-	public String showMsgListPage() {
-		return "msgList";
-	}
-	
 	@RequestMapping(value = "/GetMessageList", method = RequestMethod.GET)
 	public ModelAndView showMsgList(@RequestParam("currentPage") String currentPageStr) {
 		

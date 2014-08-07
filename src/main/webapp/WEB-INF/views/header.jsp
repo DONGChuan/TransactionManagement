@@ -14,12 +14,12 @@
 <div>
 	<ul class="nav nav-tabs nav-justified" role="tablist">
 		<li role="presentation" class="active">
-			<a href="/TransactionManagement/jsp/index.jsp">
+			<a href="index">
 				<span class="glyphicon glyphicon-home"></span>HOME
 			</a>
 		</li>
 	  	<li role="presentation">
-	  		<a href="/TransactionManagement/jsp/GetMessageList.jsp">
+	  		<a href="GetMessageList">
 	  			<span class="glyphicon glyphicon-th-list"></span>Message List
 	  		</a>
 	  	</li>

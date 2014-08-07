@@ -26,10 +26,10 @@ import com.dong.factory.EmployeeDAOFactory;
  * Servlet 
  * It works for the request from statusRecognise.jsp
  * 
- * ID empty               --> statusRecognise.jsp
- * Password empty         --> statusRecognise.jsp
- * Password error         --> statusRecognise.jsp
- * Employee doesn't exist --> statusRecognise.jsp
+ * ID empty               --> login.jsp
+ * Password empty         --> login.jsp
+ * Password error         --> login.jsp
+ * Employee doesn't exist --> login.jsp
  * Both is correct        --> index.jsp
  */
 @Controller

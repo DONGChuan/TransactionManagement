@@ -19,7 +19,7 @@
 			</a>
 		</li>
 	  	<li role="presentation">
-	  		<a href="GetMessageList">
+	  		<a href="/CompanyManagement/getMessageList">
 	  			<span class="glyphicon glyphicon-th-list"></span>Message List
 	  		</a>
 	  	</li>
@@ -29,7 +29,7 @@
 	  		</a>
 	  	</li>
 	  	<li role="presentation">
-	  		<a href="login">
+	  		<a href="/CompanyManagement/login">
 	  			<span class="glyphicon glyphicon-user"></span>Logging
 	  		</a>
 	  	</li>

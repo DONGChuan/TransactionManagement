@@ -33,15 +33,16 @@ import com.dong.factory.EmployeeDAOFactory;
  * Both is correct        --> index.jsp
  */
 @Controller
+@RequestMapping("/login")
 @SessionAttributes("employee")
 public class LoginController {
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET) 
+	@RequestMapping(method = RequestMethod.GET) 
 	public String showLoginPage(){
 		return "login";
 	}
 	
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView logginEmployee(@RequestParam("employeeID") String employeeID,
 					          @RequestParam("password") String password) {
 		

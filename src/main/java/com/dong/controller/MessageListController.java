@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,13 +20,19 @@ import com.dong.util.Page;
 import com.dong.util.PageUtil;
 
 @Controller
+@RequestMapping("/getMessageList")
 public class MessageListController {
-	
-	@RequestMapping(value = "/GetMessageList", method = RequestMethod.GET)
-	public ModelAndView showMsgList(@RequestParam("currentPage") String currentPageStr) {
+
+	@RequestMapping(method = RequestMethod.GET)
+	public ModelAndView showMsgList(HttpServletRequest rq) {
+		
+		
+		String currentPageStr = "1";
+				//(String) rq.getAttribute("currentPage");
+		//System.out.println(currentPageStr);
+		//@RequestParam("currentPage") String currentPageStr
 		
 		int currentPage = 0;
-		
 		if(currentPageStr == null || "".equals(currentPageStr)){
 			currentPage = 1;
 		}else {
@@ -35,10 +44,11 @@ public class MessageListController {
 		Page page = PageUtil.createPage(5, messageDAO.findAllCount(), currentPage);
 		List<Message> messages = messageDAO.findAllMessagee(page);
 		
-		Map<String,Object> rpAttribute= new HashMap<String,Object>();
-		rpAttribute.put("messageList", messages);
-		rpAttribute.put("page", page);
-
-		return new ModelAndView("msgList","messageList",rpAttribute);
+		ModelAndView rp = new ModelAndView();
+		rp.addObject("messageList", messages);
+		rp.addObject("page", page);
+		rp.setViewName("msgList");
+		
+		return rp;
 	}
 }

@@ -1,4 +1,8 @@
 package com.dong.util;
+
+import org.springframework.context.annotation.Scope;
+
+@Scope("session")
 public class Page {
 	
 	private int everyPage;		// The number of records per page			

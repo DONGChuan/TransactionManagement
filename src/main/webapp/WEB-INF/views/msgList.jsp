@@ -1,10 +1,10 @@
-<%@ page language="java" import="java.util.*" pageEncoding="gbk"%>
+<%@ page language="java" import="java.util.*"%>
 <%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html" />
-		<title>企业日常事务管理系统-消息列表</title>
+		<title>DoBee MS - Message List</title>
 		<script src="js/menu.js" type="text/javascript"></script>
 
 		<!-- Bootstrap -->
@@ -17,48 +17,59 @@
 	<body>
 		<!-- Add header for all pages -->
 		<%@ include file="header.jsp"%>
-		
+			
 		<ol class="breadcrumb">
-			  <li><a href="index.jsp">Home</a></li>
+			  <li><a href="index">Home</a></li>
 			  <li class="active">Messages List</li>
 		</ol>
 		
-		<div>>
-		<dl>
-		<c:forEach items="${requestScope.messageList}" var="message">
-			<dt>>><a href="GetMessage?messageID=${message.messageID}">${message.messageTitle}</a></dt>
-			<dd>
-			  <div align="right">发布人ID：${message.employeeID} 
-			  		发布时间：${message.publishTime}</div>
-			</dd>
-		</c:forEach>
-		</dl>
 		<div>
-		  <div align="center">
+			<table class="table table-hover" align="center">
+				<thead>
+		        	<tr>
+		          		<th>Message </th>
+		          		<th>Publisher ID</th>
+		          		<th>Publisher Time</th>
+		        	</tr>
+		      	</thead>
+		      	<tbody>
+  					<c:forEach items="${requestScope.messageList}" var="message">
+						<tr>
+							<td><a href="GetMessage?messageID=${message.messageID}">${message.messageTitle}</a></td>
+							<td>${message.employeeID} </td>
+							<td>${message.publishTime}</td>
+						</tr>		
+					</c:forEach>			
+		      	</tbody>
+			</table>
+		<div>
+			<div align="center">
 			<c:choose>
 				<c:when test="${page.hasPrePage}">
-					<a href="GetMessageList?currentPage=1">首页</a> | 
-			<a href="GetMessageList?currentPage=${page.currentPage -1 }">上一页</a>
+					<a href="GetMessageList?currentPage=1">First</a> | 
+					<a href="GetMessageList?currentPage=${page.currentPage -1 }">Previous</a>
 				</c:when>
 				<c:otherwise>
-					首页 | 上一页
+					First | Previous
 				</c:otherwise>
 			</c:choose>
 			<c:choose>
 				<c:when test="${page.hasNextPage}">
-					<a href="GetMessageList?currentPage=${page.currentPage + 1 }">下一页</a> | 
-			<a href="GetMessageList?currentPage=${page.totalPage }">尾页</a>
+					<a href="GetMessageList?currentPage=${page.currentPage + 1 }">Next</a> | 
+					<a href="GetMessageList?currentPage=${page.totalPage }">Last</a>
 				</c:when>
 				<c:otherwise>
-					下一页 | 尾页
+					Next | Last
 				</c:otherwise>
 			</c:choose>
-			当前为第${page.currentPage}页,共${page.totalPage}页
+			Now is ${page.currentPage} Page, Total ${page.totalPage} Pages
 		  </div>
 		</div>
 		
 		</div>
 		</div>
+		
+		<!-- Footer -->
 		<%@ include file="footer.jsp"%>
 
 	</body>

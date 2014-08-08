@@ -19,7 +19,7 @@ public class MsgPublish extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("gbk");		
+		
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		ServletContext servletContext = getServletContext();

@@ -24,7 +24,7 @@ import com.dong.util.PageUtil;
 public class MessageListController {
 
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView showMsgList(@RequestParam(value = "currentPage", defaultValue = "1") String currentPageStr/*HttpServletRequest rq*/) {
+	public ModelAndView showMsgList(@RequestParam(value = "currentPage", defaultValue = "1") String currentPageStr) {
 		
 		int currentPage = Integer.parseInt(currentPageStr);
 

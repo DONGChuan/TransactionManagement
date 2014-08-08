@@ -81,7 +81,7 @@
 								%>
 		        				<tr>
 		          					<td><%=i++%></td>
-		          					<td><a href="GetMessage?messageID=<%=message.getMessageID()%>"><%=message.getMessageTitle()%></a></td>
+		          					<td><a href="getMessage?messageID=<%=message.getMessageID()%>"><%=message.getMessageTitle()%></a></td>
 		          					<td><%=message.getPublishTime()%></td>
 		        				</tr>
 		        				<%	

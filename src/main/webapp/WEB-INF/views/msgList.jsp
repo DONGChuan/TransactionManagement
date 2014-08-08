@@ -46,8 +46,8 @@
 			<div align="center">
 			<c:choose>
 				<c:when test="${page.hasPrePage}">
-					<a href="GetMessageList?currentPage=1">First</a> | 
-					<a href="GetMessageList?currentPage=${page.currentPage -1 }">Previous</a>
+					<a href="getMessageList?currentPage=1">First</a> | 
+					<a href="getMessageList?currentPage=${page.currentPage -1 }">Previous</a>
 				</c:when>
 				<c:otherwise>
 					First | Previous
@@ -55,8 +55,8 @@
 			</c:choose>
 			<c:choose>
 				<c:when test="${page.hasNextPage}">
-					<a href="GetMessageList?currentPage=${page.currentPage + 1 }">Next</a> | 
-					<a href="GetMessageList?currentPage=${page.totalPage }">Last</a>
+					<a href="getMessageList?currentPage=${page.currentPage + 1 }">Next</a> | 
+					<a href="getMessageList?currentPage=${page.totalPage }">Last</a>
 				</c:when>
 				<c:otherwise>
 					Next | Last

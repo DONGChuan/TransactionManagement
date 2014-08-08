@@ -24,21 +24,10 @@ import com.dong.util.PageUtil;
 public class MessageListController {
 
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView showMsgList(HttpServletRequest rq) {
+	public ModelAndView showMsgList(@RequestParam(value = "currentPage", defaultValue = "1") String currentPageStr/*HttpServletRequest rq*/) {
 		
-		
-		String currentPageStr = "1";
-				//(String) rq.getAttribute("currentPage");
-		//System.out.println(currentPageStr);
-		//@RequestParam("currentPage") String currentPageStr
-		
-		int currentPage = 0;
-		if(currentPageStr == null || "".equals(currentPageStr)){
-			currentPage = 1;
-		}else {
-			currentPage = Integer.parseInt(currentPageStr);
-		}
-		
+		int currentPage = Integer.parseInt(currentPageStr);
+
 		// Get message from DB
 		MessageDAO messageDAO = MessageDAOFactory.getMessageAOInstance();
 		Page page = PageUtil.createPage(5, messageDAO.findAllCount(), currentPage);

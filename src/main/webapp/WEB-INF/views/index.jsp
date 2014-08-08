@@ -86,7 +86,6 @@
 		        				</tr>
 		        				<%	
 									}
-									session.setAttribute("currentPage", pageX.getCurrentPage());
 								%> 
 		      				</tbody>
     					</table>

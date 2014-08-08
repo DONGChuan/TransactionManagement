@@ -34,5 +34,6 @@
     
     <!-- Aspect -->
 	<beans:bean id="logAspect" class="com.dong.aspect.LoggingAspect" />
-         
+    <beans:bean id="MsgListAspect" class="com.dong.aspect.MsgListAspect" />    
+    
 </beans:beans>

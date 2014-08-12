@@ -3,106 +3,123 @@
 <%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<title>企业日常事务管理系统-查看具体消息</title>
-<link href="css/css.css" type="text/css" rel="stylesheet" media="all" />
-<link href="css/channel.css" type="text/css" rel="stylesheet" media="all" />
-<script src="js/menu.js" type="text/javascript"></script>
-<style type="text/css">
-<!--
-.STYLE2 {	color: #CCCCCC;
-	font-size: 14px;
-}
--->
-</style>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html" />
+		<title>DoBee MS - Message Detail</title>
+		
+		<!-- Editor -->
+		<script src="//cdn.ckeditor.com/4.4.3/standard/ckeditor.js"></script>
+		
 		<!-- Bootstrap -->
 		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css">
 		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 		<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
 		<script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-</head>
+	</head>
+	
+	<body>
+		<%@ include file="header.jsp"%>
+		
+		<ol class="breadcrumb">
+			  <li><a href="index">Home</a></li>
+			  <li><a href="getMessageList">Messages List</a></li>
+			  <li class="active">Message Detail</li>
+		</ol>
 
-<body>
-<%@ include file="header.jsp"%>
-<div id="place">当前位置：[<a href="index.jsp">首页</a>] - [消息列表] - [查看具体消息]</div>
-<div id="channelcont">
-<div id="channelleft">
-<div class="channelinleft">
-	<br/>
-	<h2 align="center">${message.messageTitle}</h2>
-	<br/>
-	${message.messageContent}
-	<div align="right">发布人ID：${message.employeeID} 
-	  		发布时间：${message.publishTime}</div>
-	<!--批复-->
-	<div>
-		<h5 style="color:red">领导批复:${empty criticism ? "暂无":criticism.criticismContent}</h5>
-	</div>
-	<hr/>
-	<!--回复-->
-	<c:forEach items="${requestScope.replyList}" var="reply">
-	<div>
-		${reply.replyContent}
-		<div align="right">回复人ID：${reply.employeeID} 
-	  		回复时间：${reply.replyTime}</div>
-	  	<hr/>
-	</div>
-	</c:forEach> 
-	<div align="center">
-		第<c:forEach varStatus="stat" begin="1" end="${page.totalPage}">
-			<a href="GetMessage?messageID=${message.messageID}&currentPage=${stat.index}">${stat.index}</a>
-		</c:forEach>页
-	</div>
-<div>
-  <div align="left">
-  	<p>回复:</p>
-  	<p><font color="red">${error }</font></p>
-  	<form action="CommitReply" method="post">
-  		<FCK:editor instanceName="replyContent" basePath="/fckeditor"
-  		 	toolbarSet="Basic" height="100" width="100%"></FCK:editor>
-  		<input type="hidden" name="messageID" value="${message.messageID}"/> 
-  		<input type="submit" value="提交"/>
-  		<input type="reset" value="重置"/>	
-  	</form>	 
-  </div>
-  
-  <c:if test="${sessionScope.employee.lead}">
-   <div align="left">
-  	<p>批复:</p>
-  	<p><font color="red">${error }</font></p>
-  	<form action="CommitCriticism" method="post">
-  		<FCK:editor instanceName="criticismContent" basePath="/fckeditor"
-  		 	toolbarSet="Basic" height="100" width="100%"></FCK:editor>
-  		<input type="hidden" name="messageID" value="${message.messageID}"/> 
-  		<input type="submit" value="提交"/>
-  		<input type="reset" value="重置"/>	
-  	</form>	 
-  </div>
-  </c:if>
-</div>
-</div>
+		<div>
+			<div class = "row">
+				<div class ="col-md-8 col-md-offset-2">
+					<div class="panel panel-default">
+  						<div class="panel-body">
+							<div class="media">
+								<a class="pull-left" href="#">
+									<span class="glyphicon glyphicon-bullhorn"></span>
+							  	</a>
+							  	<div class="media-body">
+							    	<h4 class="media-heading">${message.messageTitle}</h4>
+							   		${message.messageContent}
+							  	</div>
+							</div>
+					 	</div>
+					</div>
+				</div>
+				<div class ="col-md-8 col-md-offset-2">
+					<div class="alert alert-info" role="alert">
+						Publish ID：${message.employeeID} 
+				  		Publish Time：${message.publishTime}
+					</div>
+				</div>
+				<div class ="col-md-8 col-md-offset-2">
+					<div class="alert alert-warning" role="alert">
+						Leader's repley:${empty criticism ? "Nothing here":criticism.criticismContent}
+					</div>
+				</div>
+				<div class ="col-md-8 col-md-offset-2">
+					<ul class="list-group">
+					  <c:forEach items="${requestScope.replyList}" var="reply">
+						  <div>
+						  	<li class="list-group-item">
+						  		${reply.replyContent} 
+						  		<br/>
+						  		<h6>
+						  			Reply ID：${reply.employeeID} Reply Time：${reply.replyTime}
+						  		</h6>
+						  	</li>
+						  </div>
+					  </c:forEach>
+					</ul>
+				</div>
+			</div>					  
+			<div align="center">
+				<ul class="pagination">
+				  <li><a href="getMessage?messageID=${message.messageID}&currentPage=1">&laquo;</a></li>
+					  <c:forEach varStatus="stat" begin="1" end="${page.totalPage}">
+					  <li><a href="getMessage?messageID=${message.messageID}&currentPage=${stat.index}">${stat.index}</a></li>
+					  </c:forEach>
+				  <li><a href="getMessage?messageID=${message.messageID}&currentPage=${page.totalPage}">&raquo;</a></li>
+				</ul>
+			</div>
 
-</div>
-</div>
-<%@ include file="footer.jsp"%>
-<div class="end"></div>
-<script type=text/javascript>
-startajaxtabs("jsmenu");
+		<div class ="row">
+		  	<div class ="col-md-8 col-md-offset-2">
+		  		<p>Reply:</p>
+		  		<p><font color="red">${error }</font></p>
+		  		<form action="CommitReply" method="post">
 
-var iTab=GetCookie("nets_jsmenu");
-	iTab = iTab ? parseInt(iTab):parseInt(Math.random()*5);
-	if(iTab!=0) getElement("jsmenu").getElementsByTagName("h1")[iTab].LoadTab();
-	iTab++;
-	if(iTab>4) iTab=0;
-	SetCookie("nets_jsmenu",iTab,365);
-function getElement(aID)
-{
-  return (document.getElementById) ? document.getElementById(aID)
-                                   : document.all[aID];
-}
-</script>
-</body>
+					<textarea name="editor1"></textarea>
+			        <script>
+			            CKEDITOR.replace( 'editor1' );
+			        </script>
+	        
+			  		<input type="hidden" name="messageID" value="${message.messageID}"/> 
+			  		<input type="submit" value="Submit"/>
+			  		<input type="reset" value="Reset"/>	
+		  		</form>	 
+		  	</div>
+			<c:if test="${sessionScope.employee.lead}">
+				<div class ="col-md-8 col-md-offset-2">
+				  	<p>Criticism:</p>
+				  	<p><font color="red">${error }</font></p>
+				  	<form action="CommitCriticism" method="post">
+				  	
+				  		<textarea name="editor1"></textarea>
+				        <script>
+				            CKEDITOR.replace( 'editor1' );
+				        </script>
+				        
+				  		<input type="hidden" name="messageID" value="${message.messageID}"/> 
+				  		<input type="submit" value="Submit"/>
+				  		<input type="reset" value="Reset"/>	
+				  	</form>	 
+				  </div>
+			  </c:if>
+			</div>
+		</div>
+
+		<!-- Footer -->
+		<%@ include file="footer.jsp"%>
+	</body>
 </html>
+
 
 

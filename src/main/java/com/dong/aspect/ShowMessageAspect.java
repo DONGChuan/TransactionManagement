@@ -7,6 +7,7 @@ import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dong.bean.Criticism;
 import com.dong.bean.Message;
 
 @Aspect
@@ -23,8 +24,9 @@ public class ShowMessageAspect {
 ;
 		System.out.println("Results - Message - Title - : " + ((Message)result.getModel().get("message")).getMessageTitle());
 		System.out.println("Results - Message - Content : " + ((Message)result.getModel().get("message")).getMessageContent());
-
 		
+		System.out.println("Results - Criticism - Content : " + ((Criticism)result.getModel().get("criticism")).getCriticismContent());
+
 //		rp.addObject("message", message);
 //		rp.addObject("criticism", criticism);
 //		rp.addObject("replyList", replys);

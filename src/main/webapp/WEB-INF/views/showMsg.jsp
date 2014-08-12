@@ -92,8 +92,8 @@
 			        </script>
 	        
 			  		<input type="hidden" name="messageID" value="${message.messageID}"/> 
-			  		<input type="submit" value="Submit"/>
-			  		<input type="reset" value="Reset"/>	
+			  		<button type="reset" class="btn btn-default">Reset</button>
+					<button type="submit" class="btn btn-default">Submit</button>
 		  		</form>	 
 		  	</div>
 			<c:if test="${sessionScope.employee.lead}">
@@ -108,8 +108,8 @@
 				        </script>
 				        
 				  		<input type="hidden" name="messageID" value="${message.messageID}"/> 
-				  		<input type="submit" value="Submit"/>
-				  		<input type="reset" value="Reset"/>	
+				  		<button type="reset" class="btn btn-default">Reset</button>
+						<button type="submit" class="btn btn-default">Submit</button>
 				  	</form>	 
 				  </div>
 			  </c:if>

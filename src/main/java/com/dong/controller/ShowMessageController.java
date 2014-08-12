@@ -62,7 +62,7 @@ public class ShowMessageController {
 		rp.addObject("replyList", replys);
 		rp.addObject("page", page);
 		rp.setViewName("showMsg");
-		System.out.println("ccccccccccccccccccccc");
+
 		return rp;
 	}
 }

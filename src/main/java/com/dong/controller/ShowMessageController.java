@@ -24,11 +24,6 @@ import com.dong.util.PageUtil;
 @RequestMapping("/getMessage")
 public class ShowMessageController {
 	
-//	@RequestMapping(method = RequestMethod.GET) 
-//	public String showMsgPage(){
-//		return "showMsg";
-//	}
-	
 	@RequestMapping(method = RequestMethod.GET) 
 	public ModelAndView showMsg(@RequestParam("messageID") String messageIDstr,
 								@RequestParam(value = "currentPage", defaultValue = "1") String currentPageStr) {

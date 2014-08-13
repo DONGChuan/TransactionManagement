@@ -25,6 +25,8 @@
 	
 	   <!-- List of XML mapping files -->
 	   <mapping resource="Employee.hbm.xml"/>
-	
+	   <mapping resource="Criticism.hbm.xml"/>
+	   <mapping resource="Message.hbm.xml"/>
+	   <mapping resource="Reply.hbm.xml"/>
 	</session-factory>
 </hibernate-configuration>

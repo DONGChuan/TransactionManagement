@@ -2,7 +2,11 @@ package com.dong.controller;
 
 import java.util.Date;
 
+import javax.inject.Inject;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,7 +22,7 @@ import com.dong.factory.MessageDAOFactory;
 @RequestMapping("/publishNewMsg")
 @SessionAttributes("employee")
 public class MsgPublishController {
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	public String showMsgPublishPage() {
 		return "publishNewMsg";
@@ -27,7 +31,7 @@ public class MsgPublishController {
 	@RequestMapping(method = RequestMethod.POST) 
 	public ModelAndView showMsgPublish(@RequestParam("title") String title,
 								@RequestParam("content") String content,
-								@RequestParam("employee") Employee employee) {
+								@ModelAttribute("employee") Employee employee) {
 		
 		ModelAndView rp = new ModelAndView();
 		rp.setViewName("publishNewMsg");

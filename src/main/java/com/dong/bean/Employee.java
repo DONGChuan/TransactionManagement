@@ -2,6 +2,9 @@ package com.dong.bean;
 
 import java.util.Date;
 
+import org.springframework.context.annotation.Scope;
+
+@Scope("session")
 public class Employee {
 	private int employeeID;			
 	private String employeeName;	

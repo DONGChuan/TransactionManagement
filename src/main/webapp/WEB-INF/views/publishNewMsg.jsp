@@ -30,18 +30,16 @@
 		<div>
 			<div>
 				<div>
-					<p>
-						<font color="red">${requestScope.error}</font>
-					</p>
-					<form action="MsgPublish" method="post">
+					<div class="alert alert-danger" role="alert">${requestScope.error}</div>
+					<form action="publishNewMsg" method="post">
 				  		<p>Message Title£º
 				    	<input type="text" name="title" size="50"/>
 				  		</p>
 				  		<p>Message Content£º</p>
 	
-					    <textarea name="editor1"></textarea>
+					    <textarea name="content"></textarea>
 				        <script>
-				            CKEDITOR.replace( 'editor1' );
+				            CKEDITOR.replace( 'content' );
 				        </script>
 					  
 					  	<p align="center">

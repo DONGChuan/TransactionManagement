@@ -83,7 +83,7 @@
 		<div class ="row">
 		  	<div class ="col-md-8 col-md-offset-2">
 		  		<p>Reply:</p>
-		  		<p><font color="red">${error }</font></p>
+		  		<div class="alert alert-danger" role="alert">${error}</div>
 		  		<form action="CommitReply" method="post">
 
 					<textarea name="editor1"></textarea>
@@ -99,7 +99,7 @@
 			<c:if test="${sessionScope.employee.lead}">
 				<div class ="col-md-8 col-md-offset-2">
 				  	<p>Criticism:</p>
-				  	<p><font color="red">${error }</font></p>
+				  	<div class="alert alert-danger" role="alert">${error}</div>
 				  	<form action="CommitCriticism" method="post">
 				  	
 				  		<textarea name="editor1"></textarea>

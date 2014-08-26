@@ -29,12 +29,11 @@
 	
 	<!-- Set index.jsp as the index page -->
 	<view-controller path="/" view-name="index"/>
-	
-	<aop:aspectj-autoproxy />
-    
+
     <!-- Aspect -->
-	<beans:bean id="logAspect" class="com.dong.aspect.LoggingAspect" />
-    <beans:bean id="MsgListAspect" class="com.dong.aspect.MsgListAspect" />
-    <beans:bean id="ShowMsgAspect" class="com.dong.aspect.ShowMessageAspect" />    
+    <beans:import resource="aspect-context.xml"/>
+    
+    <!-- Beans -->
+    <beans:import resource="beans-context.xml"/>
     
 </beans:beans>

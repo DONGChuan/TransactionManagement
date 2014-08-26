@@ -1,6 +1,8 @@
 package com.dong.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,11 +28,15 @@ import com.dong.factory.EmployeeDAOFactory;
 @SessionAttributes("employee")
 public class LoginController {
 	
+	@Autowired
+    private EmployeeDAO employeeDAO;
+	
 	@RequestMapping(method = RequestMethod.GET) 
 	public String showLoginPage(){
 		return "login";
 	}
 	
+	@Transactional
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView logginEmployee(@RequestParam("employeeID") String employeeID,
 					          @RequestParam("password") String password) {
@@ -48,7 +54,7 @@ public class LoginController {
 			}else {
 				
 				// Loading the DB
-				EmployeeDAO employeeDAO = EmployeeDAOFactory.getEmployeeDAOInstance();
+				// EmployeeDAO employeeDAO = EmployeeDAOFactory.getEmployeeDAOInstance();
 				Employee employee = employeeDAO.findEmployeeById(Integer.parseInt(employeeID));
 				
 				if(employee == null) { // If this employee doesn't exist

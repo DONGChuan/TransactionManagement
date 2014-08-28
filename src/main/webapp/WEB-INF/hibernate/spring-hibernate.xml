@@ -4,6 +4,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:tx="http://www.springframework.org/schema/tx"
     xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:beans="http://www.springframework.org/schema/beans"
     xsi:schemaLocation="
         http://www.springframework.org/schema/beans     
         http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
@@ -34,7 +35,14 @@
             </props>
         </property>
         <!-- List of XML mapping files -->
-	   <mapping resource="Employee.hbm.xml"/>
+         <property name="mappingResources"> 
+            <list> 
+                <value>com/dong/entity/Employee.hbm.xml</value> 
+            </list> 
+        </property> 
+        
+    	<!--  mapping resource="Employee.hbm.xml"/-->
+          
     </bean>
     
     <!-- 数据库映射 -->

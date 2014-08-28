@@ -14,7 +14,7 @@ public class Employee {
 	private String employeePlace;	
 	private Date joinTime;			
 	private String password;		
-	private boolean isLead;		
+	private boolean Lead;		
 	
 	public int getEmployeeID() {
 		return employeeID;
@@ -64,10 +64,10 @@ public class Employee {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public boolean isLead() {
-		return isLead;
+	public boolean getLead() {
+		return Lead;
 	}
-	public void setLead(boolean isLead) {
-		this.isLead = isLead;
+	public void setLead(boolean Lead) {
+		this.Lead = Lead;
 	}
 }

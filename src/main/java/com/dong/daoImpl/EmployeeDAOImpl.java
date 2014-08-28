@@ -17,6 +17,7 @@ import com.dong.util.DBConnection;
 
 public class EmployeeDAOImpl implements EmployeeDAO {
 	
+	@Autowired
 	private SessionFactory sessionFactory;
 	 
     public EmployeeDAOImpl(SessionFactory sessionFactory) {

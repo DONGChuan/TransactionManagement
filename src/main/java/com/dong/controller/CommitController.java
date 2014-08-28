@@ -25,8 +25,6 @@ import com.dong.factory.ReplyDAOFactory;
 @SessionAttributes("employee")
 public class CommitController {
 	
-
-	
 	@RequestMapping(value = "criticism", method = RequestMethod.POST)
 	public ModelAndView commitCriticism(@RequestParam("criticismContent") String criticismContent,
 			@RequestParam("messageID") String messageIDStr,

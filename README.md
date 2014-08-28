@@ -7,6 +7,8 @@ This is a management system within the enterprise
 
 My but to developer this project is to learn Java EE by myself.
 
+![Alt text](/index.jpg?raw=true "Optional Title")
+
 **Function added :**
 
 1. Login

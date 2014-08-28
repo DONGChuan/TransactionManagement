@@ -18,7 +18,7 @@ My but to developer this project is to learn Java EE by myself.
 
 **Doing :**
 
-1.Integrate Spring with Hibernate
+1. Integrate Spring with Hibernate
 
 **Function coming soon :**
 

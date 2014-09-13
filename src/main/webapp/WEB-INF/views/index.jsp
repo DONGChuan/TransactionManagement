@@ -1,10 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8" %>
-<%@ page import="com.dong.dao.MessageDAO" %>
-<%@ page import="com.dong.factory.MessageDAOFactory" %>
-<%@ page import="com.dong.util.Page" %>
-<%@ page import="com.dong.util.PageUtil" %>
-<%@ page import="com.dong.bean.Message" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
@@ -71,22 +67,14 @@
 		          					<th>Time</th>
 		        				</tr>
 		      				</thead>
-		      				<tbody>
-		      					<%
-		      					    int i = 1;
-						 			MessageDAO messageDAO = MessageDAOFactory.getMessageAOInstance();
-									Page pageX = PageUtil.createPage(6, messageDAO.findAllCount(), 1);
-									List<Message> messages = messageDAO.findAllMessagee(pageX);
-									for(Message message : messages) { 
-								%>
+		      				<tbody>		      					
+								<c:forEach items="${messages}" var="message" varStatus="i">
 		        				<tr>
-		          					<td><%=i++%></td>
-		          					<td><a href="getMessage?messageID=<%=message.getMessageID()%>"><%=message.getMessageTitle()%></a></td>
-		          					<td><%=message.getPublishTime()%></td>
+		          					<td>${i.index+1}</td>
+		          					<td><a href="getMessage?messageID=${message.getMessageID()}">${message.getMessageTitle()}</a></td>
+		          					<td>${message.getPublishTime()}</td>
 		        				</tr>
-		        				<%	
-									}
-								%> 
+		        				</c:forEach>		        				
 		      				</tbody>
     					</table>
 					</div>

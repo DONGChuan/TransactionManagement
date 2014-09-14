@@ -9,6 +9,11 @@ My but to developer this project is to learn Java EE by myself.
 
 ![Alt text](/index.jpg?raw=true "Optional Title")
 
+**Diagram**
+
+[DataBase Diagram](https://app.genmymodel.com/edit/_mSq9sDv8EeSn3ZXpVIPWYw#)
+[Class Diagram](https://app.genmymodel.com/edit/_mSq9sDv8EeSn3ZXpVIPWYw#) (Doing now)
+
 **Function added :**
 
 1. Login
@@ -27,6 +32,5 @@ My but to developer this project is to learn Java EE by myself.
 1. Adding calendar to set the date 
 2. Classification the kinds of messages
 3. Adding a scrum board
-
 
 

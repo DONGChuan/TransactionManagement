@@ -25,7 +25,7 @@ public class MessageDAOImpl implements MessageDAO{
 			pstmt = conn.prepareStatement(addSQL);		
 			pstmt.setString(1, message.getMessageTitle());	
 			pstmt.setString(2, message.getMessageContent());
-			pstmt.setInt(3, message.getEmployeeID());			
+			pstmt.setInt(3, message.getEmployee());			
 			pstmt.setTimestamp(4, new Timestamp(message.getPublishTime().getTime()));
 			pstmt.executeUpdate();								
 		} catch (SQLException e) {
@@ -72,7 +72,7 @@ public class MessageDAOImpl implements MessageDAO{
 				message.setMessageTitle(rs.getString(2));
 				message.setMessageContent(
 						rs.getString(3));			
-				message.setEmployeeID(rs.getInt(4));
+				message.setEmployee(rs.getInt(4));
 				message.setPublishTime(rs.getTimestamp(5));
 				messages.add(message);
 			}
@@ -102,7 +102,7 @@ public class MessageDAOImpl implements MessageDAO{
 				message.setMessageTitle(rs.getString(2));
 				message.setMessageContent(
 						rs.getString(3));			
-				message.setEmployeeID(rs.getInt(4));
+				message.setEmployee(rs.getInt(4));
 				message.setPublishTime(rs.getTimestamp(5));
 			}
 		} catch (SQLException e) {

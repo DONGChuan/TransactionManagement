@@ -12,7 +12,7 @@ public class DBConnection {
 		= "com.mysql.jdbc.Driver" ;			
     private static final String DB_URL 
     	= "jdbc:mysql://localhost:3306/db_tranmanagement";
-    private static final String DB_USER = "root" ;								//���ݿ��û���
+    private static final String DB_USER = "root" ;						
     private static final String DB_PASSWORD = "root";	
     
 	/**
@@ -21,11 +21,11 @@ public class DBConnection {
 	 * @return       Connection
 	 */
 	public static Connection getConnection(){
-		Connection conn = null;													//����һ�����Ӷ���
+		Connection conn = null;													
 		try {
-			Class.forName(DB_DRIVER);											//ע������
-			conn = DriverManager.getConnection(DB_URL,DB_USER,DB_PASSWORD);		//������Ӷ���
-		} catch (ClassNotFoundException | SQLException e) {									//�����������޷��ҵ��쳣
+			Class.forName(DB_DRIVER);											
+			conn = DriverManager.getConnection(DB_URL,DB_USER,DB_PASSWORD);	
+		} catch (ClassNotFoundException | SQLException e) {									
 			e.printStackTrace();										
 		} 
 		return conn;

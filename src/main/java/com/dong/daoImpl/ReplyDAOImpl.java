@@ -25,10 +25,10 @@ public class ReplyDAOImpl implements ReplyDAO {
 		try {
 			pstmt = conn.prepareStatement(addSQL);			
 			pstmt.setString(1, replay.getReplyContent());	
-			pstmt.setInt(2, replay.getEmployeeID());		
+			pstmt.setInt(2, replay.getEmployee());		
 			pstmt.setTimestamp(3,new Timestamp(
 					replay.getReplyTime().getTime()));		
-			pstmt.setInt(4, replay.getMessageID());			
+			pstmt.setInt(4, replay.getMessage());			
 			pstmt.executeUpdate();								
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -89,9 +89,9 @@ public class ReplyDAOImpl implements ReplyDAO {
 				Reply reply = new Reply();
 				reply.setReplyID(rs.getInt(1));		
 				reply.setReplyContent(rs.getString(2));
-				reply.setEmployeeID(rs.getInt(3));
+				reply.setEmployee(rs.getInt(3));
 				reply.setReplyTime(rs.getTimestamp(4));
-				reply.setMessageID(rs.getInt(5));
+				reply.setMessage(rs.getInt(5));
 				replays.add(reply);
 			}
 		} catch (SQLException e) {

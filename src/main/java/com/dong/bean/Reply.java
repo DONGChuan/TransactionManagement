@@ -2,12 +2,36 @@ package com.dong.bean;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="tb_reply")
 public class Reply {
-	private int replyID;		
+	
+	@Id
+	@Column(name="replyID", unique = true, nullable = false, length = 11)
+	@GeneratedValue
+	private int replyID;	
+	
+	@ManyToOne  
+	@JoinColumn(name = "employeeID")
+	private int employee;	
+	
+	@ManyToOne  
+	@JoinColumn(name = "messageID")
+	private int message;	
+	
+	@Column(name="replyContent")
 	private String replyContent;
-	private int employeeID;	
+	
+	@Column(name="replyTime")
 	private Date replyTime;	
-	private int messageID;		
 	
 	public int getReplyID() {
 		return replyID;
@@ -21,11 +45,11 @@ public class Reply {
 	public void setReplyContent(String replyContent) {
 		this.replyContent = replyContent;
 	}
-	public int getEmployeeID() {
-		return employeeID;
+	public int getEmployee() {
+		return employee;
 	}
-	public void setEmployeeID(int employeeID) {
-		this.employeeID = employeeID;
+	public void setEmployee(int employee) {
+		this.employee = employee;
 	}
 	public Date getReplyTime() {
 		return replyTime;
@@ -33,10 +57,11 @@ public class Reply {
 	public void setReplyTime(Date replyTime) {
 		this.replyTime = replyTime;
 	}
-	public int getMessageID() {
-		return messageID;
+	public int getMessage() {
+		return message;
 	}
-	public void setMessageID(int messageID) {
-		this.messageID = messageID;
+	public void setMessage(int message) {
+		this.message = message;
 	}
+	
 }

@@ -22,9 +22,9 @@ public class CriticismDAOImpl implements CriticismDAO{
 		try {
 			pstmt = conn.prepareStatement(addSQL);		
 			pstmt.setString(1, criticism.getCriticismContent());	
-			pstmt.setInt(2, criticism.getEmployeeID());
+			pstmt.setInt(2, criticism.getEmployee());
 			pstmt.setTimestamp(3,new Timestamp(criticism.getCriticismTime().getTime()));
-			pstmt.setInt(4, criticism.getMessageID());
+			pstmt.setInt(4, criticism.getMessage());
 			pstmt.executeUpdate();	// Run the statement							
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -49,9 +49,9 @@ public class CriticismDAOImpl implements CriticismDAO{
 			if(rs.next()) {
 				criticism.setCriticismID(rs.getInt(1));
 				criticism.setCriticismContent(rs.getString(2));
-				criticism.setEmployeeID(rs.getInt(3));
+				criticism.setEmployee(rs.getInt(3));
 				criticism.setCriticismTime(rs.getTimestamp(4));
-				criticism.setMessageID(rs.getInt(5));
+				criticism.setMessage(rs.getInt(5));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

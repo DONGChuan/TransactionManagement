@@ -1,20 +1,57 @@
 package com.dong.bean;
 
 import java.util.Date;
+import java.util.List;
 
-import org.springframework.context.annotation.Scope;
-
-@Scope("session")
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+ 	
+@Entity
+@Table(name="tb_employee")
 public class Employee {
-	private int employeeID;			
-	private String employeeName;	
-	private boolean employeeSex;	
-	private Date employeeBirth;		
+	
+	@Id
+	@Column(name="employeeID", unique = true, nullable = false, length = 11)
+	@GeneratedValue
+	private int employeeID;	
+	
+	@Column(name="employeeName", length = 20)
+	private String employeeName;
+	
+	@Column(name="employeeSex")
+	private boolean employeeSex;
+	
+	@Column(name="employeeBirth")
+	private Date employeeBirth;	
+	
+	@Column(name="employeePhone", length = 20)
 	private String employeePhone;	
+	
+	@Column(name="employeePlace", length = 50)
 	private String employeePlace;	
-	private Date joinTime;			
-	private String password;		
-	private boolean Lead;		
+	
+	@Column(name="joinTime")
+	private Date joinTime;	
+	
+	@Column(name="password", length = 20)
+	private String password;
+	
+	@Column(name="isLead")
+	private boolean Lead;	
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
+    private List<Criticism> criticisms;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
+    private List<Message> messages;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
+    private List<Reply> replys;
 	
 	public int getEmployeeID() {
 		return employeeID;
@@ -69,5 +106,23 @@ public class Employee {
 	}
 	public void setLead(boolean Lead) {
 		this.Lead = Lead;
+	}
+	public List<Criticism> getCriticisms() {
+		return criticisms;
+	}
+	public void setCriticisms(List<Criticism> criticisms) {
+		this.criticisms = criticisms;
+	}
+	public List<Message> getMessages() {
+		return messages;
+	}
+	public void setMessages(List<Message> messages) {
+		this.messages = messages;
+	}
+	public List<Reply> getReplys() {
+		return replys;
+	}
+	public void setReplys(List<Reply> replys) {
+		this.replys = replys;
 	}
 }

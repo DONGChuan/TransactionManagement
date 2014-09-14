@@ -10,20 +10,18 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.dong.bean.Employee;
 import com.dong.dao.EmployeeDAO;
 import com.dong.util.DBConnection;
 
+@Repository("EmployeeDAO")
 public class EmployeeDAOImpl implements EmployeeDAO {
 	
 	@Autowired
 	private SessionFactory sessionFactory;
 	 
-    public EmployeeDAOImpl(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
 	@Override
 	public Employee findEmployeeById(int employeeID) {
 		

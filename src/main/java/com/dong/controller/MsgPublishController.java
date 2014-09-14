@@ -45,7 +45,7 @@ public class MsgPublishController {
 
 			}else {
 				Message message = new Message();
-				message.setEmployeeID(employee.getEmployeeID());
+				message.setEmployee(employee.getEmployeeID());
 				message.setMessageTitle(title);
 				message.setMessageContent(content);
 				message.setPublishTime(new Date());

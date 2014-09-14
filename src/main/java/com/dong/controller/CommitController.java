@@ -41,9 +41,9 @@ public class CommitController {
 			}else {
 				Criticism criticism = new Criticism();
 				criticism.setCriticismContent(criticismContent);
-				criticism.setEmployeeID(employee.getEmployeeID());
+				criticism.setEmployee(employee.getEmployeeID());
 				criticism.setCriticismTime(new Date());
-				criticism.setMessageID(messageID);
+				criticism.setMessage(messageID);
 				CriticismDAO criticismDAO = CriticismDAOFactory.getCriticismDAOInstance();
 				criticismDAO.addCriticism(criticism);
 			}
@@ -69,8 +69,8 @@ public class CommitController {
 			}else {
 				Reply replay = new Reply();
 				replay.setReplyContent(replyContent);
-				replay.setMessageID(messageID);		
-				replay.setEmployeeID(employee.getEmployeeID());
+				replay.setMessage(messageID);		
+				replay.setEmployee(employee.getEmployeeID());
 				replay.setReplyTime(new Date());	
 				ReplyDAO replayDAO = ReplyDAOFactory.getReplyDAOInstance();
 				replayDAO.addReplay(replay);		

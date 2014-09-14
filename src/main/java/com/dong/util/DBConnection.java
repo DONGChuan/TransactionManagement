@@ -11,8 +11,8 @@ public class DBConnection {
 	private static final String DB_DRIVER 
 		= "com.mysql.jdbc.Driver" ;			
     private static final String DB_URL 
-    	= "jdbc:mysql://localhost:3306/db_tranManagement";
-    private static final String DB_USER = "root" ;								//Êý¾Ý¿âÓÃ»§Ãû
+    	= "jdbc:mysql://localhost:3306/db_tranmanagement";
+    private static final String DB_USER = "root" ;								//ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½Ã»ï¿½ï¿½ï¿½
     private static final String DB_PASSWORD = "root";	
     
 	/**
@@ -21,11 +21,11 @@ public class DBConnection {
 	 * @return       Connection
 	 */
 	public static Connection getConnection(){
-		Connection conn = null;													//ÉùÃ÷Ò»¸öÁ¬½Ó¶ÔÏó
+		Connection conn = null;													//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ó¶ï¿½ï¿½ï¿½
 		try {
-			Class.forName(DB_DRIVER);											//×¢²áÇý¶¯
-			conn = DriverManager.getConnection(DB_URL,DB_USER,DB_PASSWORD);		//»ñµÃÁ¬½Ó¶ÔÏó
-		} catch (ClassNotFoundException | SQLException e) {									//²¶»ñÇý¶¯ÀàÎÞ·¨ÕÒµ½Òì³£
+			Class.forName(DB_DRIVER);											//×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			conn = DriverManager.getConnection(DB_URL,DB_USER,DB_PASSWORD);		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¶ï¿½ï¿½ï¿½
+		} catch (ClassNotFoundException | SQLException e) {									//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þ·ï¿½ï¿½Òµï¿½ï¿½ì³£
 			e.printStackTrace();										
 		} 
 		return conn;

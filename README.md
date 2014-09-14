@@ -12,7 +12,14 @@ My but to developer this project is to learn Java EE by myself.
 **Diagram**
 
 [DataBase Diagram](https://app.genmymodel.com/edit/_mSq9sDv8EeSn3ZXpVIPWYw#)
+
 [Class Diagram](https://app.genmymodel.com/edit/_mSq9sDv8EeSn3ZXpVIPWYw#) (Doing now)
+
+Testing compte :
+
+Employee ID : 3052
+
+Pass word : 123456
 
 **Function added :**
 

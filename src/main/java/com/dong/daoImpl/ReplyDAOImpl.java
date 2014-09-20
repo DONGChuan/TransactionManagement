@@ -8,99 +8,56 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.dong.bean.Reply;
-import com.dong.dao.ReplyDAO;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.dong.dao.ReplyDao;
+import com.dong.model.Reply;
 import com.dong.util.DBConnection;
 import com.dong.util.Page;
 
-public class ReplyDAOImpl implements ReplyDAO {
+@Repository("ReplyDao")
+public class ReplyDaoImpl implements ReplyDao {
 	
-	public void addReplay(Reply replay) {
-		
-		Connection conn = DBConnection.getConnection();		
-		String addSQL = "insert into tb_reply(replyContent," +
-				"employeeID,replyTime,messageID) values(?,?,?,?)";
-		PreparedStatement pstmt = null;	
-		
-		try {
-			pstmt = conn.prepareStatement(addSQL);			
-			pstmt.setString(1, replay.getReplyContent());	
-			pstmt.setInt(2, replay.getEmployee());		
-			pstmt.setTimestamp(3,new Timestamp(
-					replay.getReplyTime().getTime()));		
-			pstmt.setInt(4, replay.getMessage());			
-			pstmt.executeUpdate();								
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally{
-			DBConnection.close(pstmt);							
-			DBConnection.close(conn);							
-		}
+	@Autowired
+	private SessionFactory sessionFactory;
+	
+	private Session getCurrentSession() {
+		return this.sessionFactory.getCurrentSession();
 	}
 
-	/*
-	 *  Return number of replies in one message with messageID
-	 */
+	@Override
+	public void add(Reply replay) {
+		getCurrentSession().save(replay);
+	}
+	
+	@Override
 	public int findCountByMsgID(int messageID) {
 		
-		Connection conn = DBConnection.getConnection();	
-		String findSQL = "select count(*) from tb_reply where messageID = ?";
-		PreparedStatement pstmt = null;					
-		ResultSet rs = null;
+		String hql = "SELECT COUNT(R) FROM Reply R" +
+					"WHERE R.messageID = :messageID";
+		Query query = getCurrentSession().createQuery(hql);
+		query.setParameter("messageID", messageID);
 		
-		int count = 0;
+		List results = query.list();
 		
-		try {
-			pstmt = conn.prepareStatement(findSQL);		
-			pstmt.setInt(1, messageID);
-			rs = pstmt.executeQuery();				
-			if(rs.next()) {
-				count = rs.getInt(1);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally{
-			DBConnection.close(rs);								
-			DBConnection.close(pstmt);							
-			DBConnection.close(conn);							
-		}
-		return count;
+		return (int) results.get(0);
 	}
-
+	
+	@Override
 	public List<Reply> findReplayByMsgID(int messageID, Page page) {
 		
-		Connection conn = DBConnection.getConnection();	
-		String findSQL = "select * from tb_reply" +
-								" where messageID = ? limit ?,?";
+		String hql = "FROM Reply R WHERE R.messageID = :messageID";
+		Query query = getCurrentSession().createQuery(hql);
+		query.setParameter("messageID", messageID);
+		query.setFirstResult(page.getBeginIndex());
+		query.setMaxResults(page.getEveryPage());
 		
-		PreparedStatement pstmt = null;					
-		ResultSet rs = null;
-		List<Reply> replays = new ArrayList<Reply>();
+		List<Reply> results = query.list();
 		
-		try {
-			
-			pstmt = conn.prepareStatement(findSQL);		
-			pstmt.setInt(1, messageID);
-			pstmt.setInt(2, page.getBeginIndex());
-			pstmt.setInt(3, page.getEveryPage());
-			rs = pstmt.executeQuery();	
-			
-			while(rs.next()) {
-				Reply reply = new Reply();
-				reply.setReplyID(rs.getInt(1));		
-				reply.setReplyContent(rs.getString(2));
-				reply.setEmployee(rs.getInt(3));
-				reply.setReplyTime(rs.getTimestamp(4));
-				reply.setMessage(rs.getInt(5));
-				replays.add(reply);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally{
-			DBConnection.close(rs);								
-			DBConnection.close(pstmt);							
-			DBConnection.close(conn);							
-		}
-		return replays;
+		return results;
 	}
 }

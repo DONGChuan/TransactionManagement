@@ -1,10 +1,12 @@
 package com.dong.dao;
 
-import com.dong.bean.Criticism;
+import com.dong.model.Criticism;
 
-public interface CriticismDAO {
+public interface CriticismDao {
 	
-	public void addCriticism(Criticism criticism);		  // ADD
-	public Criticism findCriticismByMsgID(int messageID); // FIND BY ID
-	
+	void add(Criticism criticism);		 
+	void update(Criticism criticism);
+	void delete(Criticism criticism);
+	Criticism findByMessageID(int messageID); 
+
 }

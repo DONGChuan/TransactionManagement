@@ -1,65 +1,41 @@
 package com.dong.daoImpl;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Timestamp;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-import com.dong.bean.Criticism;
-import com.dong.dao.CriticismDAO;
-import com.dong.util.DBConnection;
+import com.dong.dao.CriticismDao;
+import com.dong.model.Criticism;
 
-public class CriticismDAOImpl implements CriticismDAO{
+@Repository("CriticismDao")
+public class CriticismDaoImpl implements CriticismDao{
 	
-	public void addCriticism(Criticism criticism) {
-		
-		Connection conn = DBConnection.getConnection();	
-		String addSQL = "insert into tb_criticism(criticismContent,employeeID,criticismTime,messageID) values(?,?,?,?)";
-		PreparedStatement pstmt = null;	
-		
-		// Fill the fields of MySQL statement
-		try {
-			pstmt = conn.prepareStatement(addSQL);		
-			pstmt.setString(1, criticism.getCriticismContent());	
-			pstmt.setInt(2, criticism.getEmployee());
-			pstmt.setTimestamp(3,new Timestamp(criticism.getCriticismTime().getTime()));
-			pstmt.setInt(4, criticism.getMessage());
-			pstmt.executeUpdate();	// Run the statement							
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally{
-			DBConnection.close(pstmt);							
-			DBConnection.close(conn);				
-		}
+	@Autowired
+	private SessionFactory sessionFactory;
+	
+	private Session getCurrentSession() {
+		return this.sessionFactory.getCurrentSession();
+	}
+
+	@Override
+	public void add(Criticism criticism) {
+		getCurrentSession().save(criticism);
+	}
+
+	@Override
+	public void update(Criticism criticism) {
+		getCurrentSession().update(criticism);
+	}
+
+	@Override
+	public void delete(Criticism criticism) {
+		getCurrentSession().delete(criticism);		
+	}
+
+	@Override
+	public Criticism findByMessageID(int messageID) {
+		return (Criticism) getCurrentSession().get(Criticism.class, messageID);
 	}
 	
-	public Criticism findCriticismByMsgID(int messageID) {
-		
-		Connection conn = DBConnection.getConnection();	
-		String findSQL = "select * from tb_criticism where messageID = ?";
-		PreparedStatement pstmt = null;					
-		ResultSet rs = null;
-		Criticism criticism= new Criticism();
-		
-		try {
-			pstmt = conn.prepareStatement(findSQL);		
-			pstmt.setInt(1, messageID);
-			rs = pstmt.executeQuery();				
-			if(rs.next()) {
-				criticism.setCriticismID(rs.getInt(1));
-				criticism.setCriticismContent(rs.getString(2));
-				criticism.setEmployee(rs.getInt(3));
-				criticism.setCriticismTime(rs.getTimestamp(4));
-				criticism.setMessage(rs.getInt(5));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally{
-			DBConnection.close(rs);	
-			DBConnection.close(pstmt);						
-			DBConnection.close(conn);						
-		}
-		return criticism;
-	}
 }

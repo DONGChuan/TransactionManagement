@@ -21,18 +21,19 @@ Employee ID : 3052
 
 Pass word : 123456
 
-**Function added :**
+** Done :**
 
 1. Login
 2. List messages
 3. Publish a new massage
-4. Detail a message
+4. Detail of a message
 5. Comment a message as a employee
 6. Comment a message as a leader
+7. Integrate Spring with Hibernate
 
 **Doing :**
 
-1. Integrate Spring with Hibernate
+1. Creat a new user
 
 **Function coming soon :**
 

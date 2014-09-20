@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.dong.bean.Employee;
-import com.dong.dao.EmployeeDAO;
-import com.dong.factory.EmployeeDAOFactory;
+import com.dong.bo.EmployeeBo;
+import com.dong.model.Employee;
 
 /*
  * Servlet 
@@ -29,7 +28,7 @@ import com.dong.factory.EmployeeDAOFactory;
 public class LoginController {
 	
 	@Autowired
-    private EmployeeDAO employeeDAO;
+    private EmployeeBo employeeBo;
 	
 	@RequestMapping(method = RequestMethod.GET) 
 	public String showLoginPage(){
@@ -52,10 +51,7 @@ public class LoginController {
 				error = "Password can't be empty!";
 				return new ModelAndView("login","error",error);
 			}else {
-				
-				// Loading the DB
-				// EmployeeDAO employeeDAO = EmployeeDAOFactory.getEmployeeDAOInstance();
-				Employee employee = employeeDAO.findEmployeeById(Integer.parseInt(employeeID));
+				Employee employee = employeeBo.findByEmployeeID(employeeID);
 				
 				if(employee == null) { // If this employee doesn't exist
 					error = "This employee ID doesn't exist!";

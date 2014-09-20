@@ -24,7 +24,7 @@ public class Message {
 	
 	@ManyToOne  
 	@JoinColumn(name = "employeeID")  
-	private int employee;
+	private Employee employee;
 	
 	@Column(name="messageTitle")
 	private String messageTitle;
@@ -59,10 +59,10 @@ public class Message {
 	public void setMessageContent(String messageContent) {
 		this.messageContent = messageContent;
 	}
-	public int getEmployee() {
+	public Employee getEmployee() {
 		return employee;
 	}
-	public void setEmployee(int employee) {
+	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
 	public Date getPublishTime() {

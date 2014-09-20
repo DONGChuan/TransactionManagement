@@ -38,7 +38,7 @@ public class EmployeeBoImpl implements EmployeeBo{
 
 	@Override
 	@Transactional
-	public Employee findByEmployeeID(String employeeID) {
+	public Employee findByEmployeeID(int employeeID) {
 		return employeeDao.findByEmployeeID(employeeID);
 	}
 

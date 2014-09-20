@@ -33,7 +33,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 
 	@Override
-	public Employee findByEmployeeID(String employeeID) {
+	public Employee findByEmployeeID(int employeeID) {
 		return (Employee) getCurrentSession().get(Employee.class, employeeID);
 	}
 }

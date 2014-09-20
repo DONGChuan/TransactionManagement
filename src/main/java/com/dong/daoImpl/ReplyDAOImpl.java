@@ -37,20 +37,20 @@ public class ReplyDaoImpl implements ReplyDao {
 	@Override
 	public int findCountByMsgID(int messageID) {
 		
-		String hql = "SELECT COUNT(R) FROM Reply R" +
-					"WHERE R.messageID = :messageID";
+		String hql = "SELECT COUNT(R) FROM Reply R " +
+					"WHERE R.message.messageID = :messageID";
 		Query query = getCurrentSession().createQuery(hql);
 		query.setParameter("messageID", messageID);
 		
 		List results = query.list();
 		
-		return (int) results.get(0);
+		return ((Long)results.get(0)).intValue();
 	}
 	
 	@Override
 	public List<Reply> findReplayByMsgID(int messageID, Page page) {
 		
-		String hql = "FROM Reply R WHERE R.messageID = :messageID";
+		String hql = "FROM Reply R WHERE R.message.messageID = :messageID";
 		Query query = getCurrentSession().createQuery(hql);
 		query.setParameter("messageID", messageID);
 		query.setFirstResult(page.getBeginIndex());

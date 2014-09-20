@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.dong.bo.MessageBo;
 import com.dong.dao.MessageDao;
@@ -21,31 +22,37 @@ public class MessageBoImpl implements MessageBo{
 	}
 
 	@Override
+	@Transactional
 	public void add(Message message) {
 		messageDao.add(message);
 	}
 
 	@Override
+	@Transactional
 	public void update(Message message) {
 		messageDao.update(message);
 	}
 
 	@Override
+	@Transactional
 	public void delete(Message message) {
 		messageDao.delete(message);
 	}
 
 	@Override
+	@Transactional
 	public List<Message> findAllMessagee(Page page) {
 		return messageDao.findAllMessagee(page);
 	}
 
 	@Override
+	@Transactional
 	public Message findMessageById(int messageID) {
 		return messageDao.findMessageById(messageID);
 	}
 
 	@Override
+	@Transactional
 	public int findAllCount() {
 		return messageDao.findAllCount();
 	}

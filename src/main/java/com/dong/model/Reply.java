@@ -21,11 +21,11 @@ public class Reply {
 	
 	@ManyToOne  
 	@JoinColumn(name = "employeeID")
-	private int employee;	
+	private Employee employee;	
 	
 	@ManyToOne  
 	@JoinColumn(name = "messageID")
-	private int message;	
+	private Message message;	
 	
 	@Column(name="replyContent")
 	private String replyContent;
@@ -45,23 +45,22 @@ public class Reply {
 	public void setReplyContent(String replyContent) {
 		this.replyContent = replyContent;
 	}
-	public int getEmployee() {
-		return employee;
-	}
-	public void setEmployee(int employee) {
-		this.employee = employee;
-	}
 	public Date getReplyTime() {
 		return replyTime;
 	}
 	public void setReplyTime(Date replyTime) {
 		this.replyTime = replyTime;
 	}
-	public int getMessage() {
+	public Employee getEmployee() {
+		return employee;
+	}
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+	public Message getMessage() {
 		return message;
 	}
-	public void setMessage(int message) {
+	public void setMessage(Message message) {
 		this.message = message;
 	}
-	
 }

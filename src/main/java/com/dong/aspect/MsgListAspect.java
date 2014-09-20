@@ -9,7 +9,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.dong.bean.Message;
+import com.dong.model.Message;
 import com.dong.util.Page;
 
 @Aspect
@@ -23,7 +23,7 @@ public class MsgListAspect {
 		System.out.println("BEGIN : " + joinPoint.getSignature().getName());
 		System.out.println("Arguments : " + Arrays.toString(joinPoint.getArgs()));
 		System.out.println("Results - ViewNames ------- : " + result.getViewName());
-		System.out.println("Results - Message --- Count : " + ((List<Message> )result.getModel().get("messageList")).size());
+		System.out.println("Results - Message --- Count : " + ((List<Message>)result.getModel().get("messageList")).size());
 		System.out.println("Results - Page - TotalCount : " + ((Page)result.getModel().get("page")).getTotalCount());
 		System.out.println("Results - Page - CurrentPage: " + ((Page)result.getModel().get("page")).getCurrentPage());
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.dong.bo.ReplyBo;
 import com.dong.dao.ReplyDao;
@@ -21,16 +22,19 @@ public class ReplyBoImpl implements ReplyBo {
 	}
 
 	@Override
+	@Transactional
 	public void add(Reply replay) {
 		replyDao.add(replay);
 	}
 
 	@Override
+	@Transactional
 	public List<Reply> findReplayByMsgID(int messageID, Page page) {
 		return replyDao.findReplayByMsgID(messageID, page);
 	}
 
 	@Override
+	@Transactional
 	public int findCountByMsgID(int messageID) {
 		return replyDao.findCountByMsgID(messageID);
 	}

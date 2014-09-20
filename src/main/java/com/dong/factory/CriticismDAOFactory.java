@@ -1,10 +1,10 @@
 package com.dong.factory;
 
-import com.dong.dao.CriticismDAO;
-import com.dong.daoImpl.CriticismDAOImpl;
+import com.dong.dao.CriticismDao;
+import com.dong.daoImpl.CriticismDaoImpl;
 
 public class CriticismDAOFactory {
-	public static CriticismDAO getCriticismDAOInstance(){	
-		return new CriticismDAOImpl();						
+	public static CriticismDao getCriticismDAOInstance(){	
+		return new CriticismDaoImpl();						
 	}
 }

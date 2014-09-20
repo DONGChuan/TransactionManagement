@@ -1,7 +1,7 @@
 package com.dong.factory;
 
-import com.dong.dao.EmployeeDAO;
-import com.dong.daoImpl.EmployeeDAOImpl;
+import com.dong.dao.EmployeeDao;
+import com.dong.daoImpl.EmployeeDaoImpl;
 
 public class EmployeeDAOFactory {
 //	public static EmployeeDAO getEmployeeDAOInstance(){	

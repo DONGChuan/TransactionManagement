@@ -7,6 +7,6 @@ public interface EmployeeBo {
 	void save(Employee employee);
 	void update(Employee employee);
 	void delete(Employee employee);
-	Employee findByEmployeeID(String employeeID);
+	Employee findByEmployeeID(int employeeID);
 	
 }

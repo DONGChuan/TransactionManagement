@@ -3,6 +3,7 @@ package com.dong.controller;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,7 @@ import com.dong.model.Reply;
 public class CommitController {
 	
 	@Autowired
+	@Qualifier(value="ReplyBo")
     private ReplyBo replyBo;
 	
 	@Autowired
@@ -59,11 +61,10 @@ public class CommitController {
 	
 	@RequestMapping(value = "reply", method = RequestMethod.POST)
 	public ModelAndView commitReply(@RequestParam("replyContent") String replyContent,
-			@RequestParam("messageID") String messageIDStr,
+			@RequestParam("messageID") Message message,
 			@ModelAttribute("employee") Employee employee) {
 		
 		ModelAndView rp = new ModelAndView();
-		int messageID = Integer.parseInt(messageIDStr);
 	
 		if(employee == null) {
 			rp.addObject("error", "Must Log In Firstly");
@@ -73,8 +74,8 @@ public class CommitController {
 			}else {
 				Reply replay = new Reply();
 				replay.setReplyContent(replyContent);
-				replay.setMessage(messageID);		
-				replay.setEmployee(employee.getEmployeeID());
+				replay.setMessage(message);		
+				replay.setEmployee(employee);
 				replay.setReplyTime(new Date());	
 
 				replyBo.add(replay);		

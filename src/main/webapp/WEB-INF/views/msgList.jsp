@@ -36,7 +36,7 @@
   					<c:forEach items="${requestScope.messageList}" var="message">
 						<tr>
 							<td><a href="getMessage?messageID=${message.messageID}">${message.messageTitle}</a></td>
-							<td>${message.employeeID} </td>
+							<td>${message.employee.getEmployeeID()} </td>
 							<td>${message.publishTime}</td>
 						</tr>		
 					</c:forEach>			

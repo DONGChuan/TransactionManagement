@@ -45,7 +45,7 @@
 				</div>
 				<div class ="col-md-8 col-md-offset-2">
 					<div class="alert alert-info" role="alert">
-						Publish ID£º${message.employeeID} 
+						Publish ID£º${message.employee.employeeID} 
 				  		Publish Time£º${message.publishTime}
 					</div>
 				</div>
@@ -62,7 +62,7 @@
 						  		${reply.replyContent} 
 						  		<br/>
 						  		<h6>
-						  			Reply ID£º${reply.employeeID} Reply Time£º${reply.replyTime}
+						  			Reply ID£º${reply.employee.employeeID} Reply Time£º${reply.replyTime}
 						  		</h6>
 						  	</li>
 						  </div>
@@ -91,7 +91,7 @@
 			            CKEDITOR.replace( 'editor1' );
 			        </script>
 	        
-			  		<input type="hidden" name="messageID" value="${message.messageID}"/> 
+			  		<input type="hidden" name="message" value="${message}"/> 
 			  		<button type="reset" class="btn btn-default">Reset</button>
 					<button type="submit" class="btn btn-default">Submit</button>
 		  		</form>	 
@@ -107,7 +107,7 @@
 				            CKEDITOR.replace( 'editor1' );
 				        </script>
 				        
-				  		<input type="hidden" name="messageID" value="${message.messageID}"/> 
+				  		<input type="hidden" name="message" value="${message}"/> 
 				  		<button type="reset" class="btn btn-default">Reset</button>
 						<button type="submit" class="btn btn-default">Submit</button>
 				  	</form>	 

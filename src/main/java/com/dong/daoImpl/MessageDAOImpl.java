@@ -41,7 +41,7 @@ public class MessageDaoImpl implements MessageDao{
 	public List<Message> findAllMessagee(Page page) {
 		
 		String hql = "FROM Message M " +
-					"ORDER BY E.publishTime DESC";
+					"ORDER BY M.publishTime DESC";
 		
 		Query query = getCurrentSession().createQuery(hql);
 		query.setFirstResult(page.getBeginIndex());
@@ -63,6 +63,6 @@ public class MessageDaoImpl implements MessageDao{
 		Query query = getCurrentSession().createQuery(hql);
 		List results = query.list();
 		
-		return (int) results.get(0);
+		return ((Long)results.get(0)).intValue();
 	}	
 }

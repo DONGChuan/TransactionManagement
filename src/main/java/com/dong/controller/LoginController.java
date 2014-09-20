@@ -1,5 +1,7 @@
 package com.dong.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,9 +11,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.dong.bean.Employee;
-import com.dong.dao.EmployeeDAO;
-import com.dong.factory.EmployeeDAOFactory;
+import com.dong.bo.EmployeeBo;
+import com.dong.bo.MessageBo;
+import com.dong.model.Employee;
+import com.dong.model.Message;
+import com.dong.util.Page;
+import com.dong.util.PageUtil;
 
 /*
  * Servlet 
@@ -29,7 +34,10 @@ import com.dong.factory.EmployeeDAOFactory;
 public class LoginController {
 	
 	@Autowired
-    private EmployeeDAO employeeDAO;
+    private EmployeeBo employeeBo;
+	
+	@Autowired
+    private MessageBo messageBo;
 	
 	@RequestMapping(method = RequestMethod.GET) 
 	public String showLoginPage(){
@@ -52,17 +60,24 @@ public class LoginController {
 				error = "Password can't be empty!";
 				return new ModelAndView("login","error",error);
 			}else {
-				
-				// Loading the DB
-				// EmployeeDAO employeeDAO = EmployeeDAOFactory.getEmployeeDAOInstance();
-				Employee employee = employeeDAO.findEmployeeById(Integer.parseInt(employeeID));
+		
+				Employee employee = employeeBo.findByEmployeeID(Integer.valueOf(employeeID));
 				
 				if(employee == null) { // If this employee doesn't exist
 					error = "This employee ID doesn't exist!";
 					return new ModelAndView("login","error",error);
 				} else {
 					if(password.equals(employee.getPassword())) { // If both are correct
-						return new ModelAndView("index","employee", employee);
+						
+						Page pageX = PageUtil.createPage(6, messageBo.findAllCount(), 1);
+						List<Message> messages = messageBo.findAllMessagee(pageX);
+						
+						ModelAndView mv = new ModelAndView();
+						mv.addObject("employee", employee);	
+						mv.addObject("messages", messages);		
+						mv.setViewName("index");
+						
+						return mv;
 					} else { // If password is error
 						error = "Password is error!";
 						return new ModelAndView("login","error",error);

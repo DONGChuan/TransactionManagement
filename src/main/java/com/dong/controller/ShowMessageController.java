@@ -2,27 +2,34 @@ package com.dong.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.dong.bean.Criticism;
-import com.dong.bean.Message;
-import com.dong.bean.Reply;
-import com.dong.dao.CriticismDAO;
-import com.dong.dao.MessageDAO;
-import com.dong.dao.ReplyDAO;
-import com.dong.factory.CriticismDAOFactory;
-import com.dong.factory.MessageDAOFactory;
-import com.dong.factory.ReplyDAOFactory;
+import com.dong.bo.CriticismBo;
+import com.dong.bo.MessageBo;
+import com.dong.bo.ReplyBo;
+import com.dong.model.Criticism;
+import com.dong.model.Message;
+import com.dong.model.Reply;
 import com.dong.util.Page;
 import com.dong.util.PageUtil;
 
 @Controller
 @RequestMapping("/getMessage")
 public class ShowMessageController {
+	
+	@Autowired
+    private MessageBo messageBo;
+	
+	@Autowired
+    private ReplyBo replyBo;
+	
+	@Autowired
+    private CriticismBo criticismBo;
 	
 	@RequestMapping(method = RequestMethod.GET) 
 	public ModelAndView showMsg(@RequestParam("messageID") String messageIDstr,
@@ -31,25 +38,19 @@ public class ShowMessageController {
 		// Get messageID from request
 		int messageID = Integer.parseInt(messageIDstr);
 		
-		// Get message from message DAO
-		MessageDAO messageDAO = MessageDAOFactory.getMessageAOInstance();
-		Message message = messageDAO.findMessageById(messageID);
+		Message message = messageBo.findMessageById(messageID);
 		
 		int currentPage = Integer.parseInt(currentPageStr);
 		
-		ReplyDAO replayDAO = ReplyDAOFactory.getReplyDAOInstance();
-		
 		// Create the page 
 		Page page = PageUtil.createPage(5, 
-				replayDAO.findCountByMsgID(messageID), currentPage);
+				replyBo.findCountByMsgID(messageID), currentPage);
 		
 		// Get the list of replys from DB
-		List<Reply> replys = replayDAO.
+		List<Reply> replys = replyBo.
 						findReplayByMsgID(messageID, page);
 		
-		CriticismDAO criticismDAO = CriticismDAOFactory.getCriticismDAOInstance();
-		Criticism criticism = criticismDAO.findCriticismByMsgID(messageID);
-		
+		Criticism criticism = criticismBo.findByMessageID(messageID);
 		
 		ModelAndView rp = new ModelAndView();
 		rp.addObject("message", message);

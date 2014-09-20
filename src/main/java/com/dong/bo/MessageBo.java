@@ -1,11 +1,11 @@
-package com.dong.dao;
+package com.dong.bo;
 
 import java.util.List;
 
 import com.dong.model.Message;
 import com.dong.util.Page;
 
-public interface MessageDao {
+public interface MessageBo {
 	
 	void add(Message message);	
 	void update(Message message);	
@@ -13,4 +13,5 @@ public interface MessageDao {
 	List<Message> findAllMessagee(Page page);		
 	Message findMessageById(int messageID);	
 	int findAllCount();	
+	
 }

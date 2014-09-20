@@ -15,44 +15,25 @@
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
         ">
-
-    <!-- Hibernate4 -->
-    <!-- 加载资源文件  其中包含变量信息，必须在Spring配置文件的最前面加载，即第一个加载-->
-    <context:property-placeholder location="/WEB-INF/properties/persistence-mysql.properties" />
     
-    <bean id="sessionFactory" 
-        class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+    <!-- Import Database Configuration -->
+	<import resource="DataSource.xml"/>
+	
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="packagesToScan">
-            <list>
-                <value>com.dong.bean</value>
-            </list>
+        <property name="configLocation">
+            <value>/WEB-INF/hibernate/hibernate.cfg.xml</value>
         </property>
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">${hibernate.dialect}</prop>
                 <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
             </props>
-        </property>
-        <!-- List of XML mapping files -->
-         <property name="mappingResources"> 
-            <list> 
-                <value>com/dong/entity/Employee.hbm.xml</value> 
-            </list> 
-        </property> 
-        
-    	<!--  mapping resource="Employee.hbm.xml"/-->
-          
+        </property>   
     </bean>
     
-    <!-- 数据库映射 -->
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="${jdbc.driverClassName}" />
-      	<property name="url" value="${jdbc.url}" />
-      	<property name="username" value="${jdbc.user}" />
-      	<property name="password" value="${jdbc.pass}" />
-   	</bean>
-   	
+    <tx:annotation-driven />
+    
    	<bean id="transactionManager"
     class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 	    <property name="sessionFactory" ref="sessionFactory" />

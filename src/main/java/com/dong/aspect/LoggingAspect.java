@@ -8,7 +8,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.dong.bean.Employee;
+import com.dong.model.Employee;
 
 @Aspect
 public class LoggingAspect {

@@ -26,6 +26,11 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.dong.controller" />
+	<context:component-scan base-package="com.dong.daoImpl" />
+	<context:component-scan base-package="com.dong.dao" />
+	<context:component-scan base-package="com.dong.bo.Impl" />
+	<context:component-scan base-package="com.dong.bo" />
+	<context:component-scan base-package="com.dong.model" />
 	
 	<!-- Set index.jsp as the index page -->
 	<view-controller path="/" view-name="index"/>

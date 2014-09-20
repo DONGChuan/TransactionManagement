@@ -2,8 +2,6 @@ package com.dong.controller;
 
 import java.util.Date;
 
-import javax.inject.Inject;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,16 +11,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.dong.bean.Employee;
-import com.dong.bean.Message;
-import com.dong.dao.MessageDAO;
-import com.dong.factory.MessageDAOFactory;
+import com.dong.bo.MessageBo;
+import com.dong.model.Employee;
+import com.dong.model.Message;
 
 @Controller
 @RequestMapping("/publishNewMsg")
 @SessionAttributes("employee")
 public class MsgPublishController {
-
+	
+	@Autowired
+    private MessageBo messageBo;
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public String showMsgPublishPage() {
 		return "publishNewMsg";
@@ -45,13 +45,12 @@ public class MsgPublishController {
 
 			}else {
 				Message message = new Message();
-				message.setEmployeeID(employee.getEmployeeID());
+				message.setEmployee(employee);
 				message.setMessageTitle(title);
 				message.setMessageContent(content);
 				message.setPublishTime(new Date());
-				MessageDAO messageDAO = 
-					MessageDAOFactory.getMessageAOInstance();
-				messageDAO.addMessage(message);	
+				
+				messageBo.add(message);
 			}
 		}
 		return rp;

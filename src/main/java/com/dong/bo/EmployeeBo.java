@@ -1,8 +1,8 @@
-package com.dong.dao;
+package com.dong.bo;
 
 import com.dong.model.Employee;
 
-public interface EmployeeDao {
+public interface EmployeeBo {
 	
 	void save(Employee employee);
 	void update(Employee employee);

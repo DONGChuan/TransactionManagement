@@ -15,13 +15,13 @@ My but to developer this project is to learn Java EE by myself.
 
 [Class Diagram](https://app.genmymodel.com/edit/_mSq9sDv8EeSn3ZXpVIPWYw#) (Doing now)
 
-** Testing compte :**
+**Testing compte :**
 
 Employee ID : 3052
 
 Pass word : 123456
 
-** Done :**
+**Done :**
 
 1. Login
 2. List messages
